@@ -1,7 +1,6 @@
 package co.moonmonkeylabs.realmsearchview;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -17,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmBasedRecyclerViewAdapter;
@@ -117,7 +117,7 @@ public abstract class RealmSearchAdapter<T extends RealmObject, VH extends Realm
         if (sortKey == null) {
             businesses = where.findAll();
         } else {
-            businesses = where.findAllSorted(sortKey, sortOrder);
+            businesses = where.sort(sortKey, sortOrder).findAll();
         }
         updateRealmResults(businesses);
     }
